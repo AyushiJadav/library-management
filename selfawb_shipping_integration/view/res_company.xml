@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_company_self_awb_configuration" model="ir.ui.view">
+        <field name="name">SelfAWB Configuration</field>
+        <field name="model">res.company</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[last()]" position="after">
+                <page string="SelfAWB Configuration">
+                    <group>
+                        <field name="use_self_awb_shipping_provider"/>
+                    </group>
+                    <group attrs="{'invisible': [('use_self_awb_shipping_provider', '!=', True)]}">
+                        <field name="self_awb_api_url"
+                               attrs="{'required':[('use_self_awb_shipping_provider','=',True)]}"/>
+                        <field name="self_awb_username"
+                               attrs="{'required':[('use_self_awb_shipping_provider','=',True)]}"/>
+                        <field name="self_awb_password"
+                               attrs="{'required':[('use_self_awb_shipping_provider','=',True)]}"/>
+                        <field name="self_awb_client_id"
+                               attrs="{'required':[('use_self_awb_shipping_provider','=',True)]}"/>
+                        <field name="self_awb_authentication_token"/>
+
+                        <button name="generate_self_awb_authorisation_token" type="object"
+                                string="Generate Authentication Token" class="fa fa-arrow-right oe_link"
+                                attrs="{'invisible': [('use_self_awb_shipping_provider','=',False)]}"/>
+
+                        <button name="import_self_awb_service" type="object"
+                                string="Import Services" class="fa fa-arrow-right oe_link"
+                                attrs="{'invisible': [('use_self_awb_shipping_provider','=',False)]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

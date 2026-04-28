@@ -1,0 +1,70 @@
+<!-- <?xml version="1.0" encoding = 'UTF-8'?> -->
+<odoo>
+<data>
+    <record id="view_book_list" model="ir.ui.view">
+        <field name="name">book.list</field>
+        <field name="model">lib.book</field>
+        <field name="arch" type="xml">
+            <list string="Library Book List">
+                <field name="name"/>
+                <field name="author"/>
+                <field name="isbn"/>
+                <field name="pages"/>
+                <field name = "published_date"/>
+                <field name = 'state'/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_book_form" model="ir.ui.view">
+        <field name="name">lib.book.form</field>
+        <field name="model">lib.book</field>
+        <field name="arch" type="xml">
+            <form string="Library Book list">
+            <header>
+                <button string = 'Set to Borrow' type='object' name='action_open_borrow_wizard' invisible="state != 'available'" groups = "library_mgmt.group_library_manager"/>
+                <button string = 'Set to Available' type='object' name='action_return' invisible="state != 'borrowed'" group = "library_mgmt.group_library_manager"/>
+                <field name="state" widget="statusbar" statusbar_visible="available, borrowed, lost"/>
+            </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="author"/>
+                        <field name="isbn"/> 
+                    </group>
+                    <group>
+                        <field name="pages"/>
+                        <field name="published_date"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lib_book_search" model="ir.ui.view">
+    <field name="name">lib.book.search</field>
+    <field name="model">lib.book</field>
+    <field name="arch" type="xml">
+        <search string="Search Records">
+            <!-- Searchable fields -->
+            <field name="author"/>
+
+            <!-- Group By options -->
+            <group expand="0" string="Group By">
+                <filter string="published date" name="group_by_published_date" context="{'group_by': 'published_date'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+    <record id="action_lib_book" model="ir.actions.act_window">
+        <field name="name">Library Book</field>
+        <field name="res_model">lib.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_lib_root" name="Library" sequence="10"/>
+
+    <menuitem id="menu_lib_book" name="Books" parent="menu_lib_root" action="action_lib_book" sequence="11"/>
+</data>
+</odoo>

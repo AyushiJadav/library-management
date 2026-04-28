@@ -1,0 +1,49 @@
+<odoo>
+    <template id="report_custom_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Details for <t t-esc="o.name"/></h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Lib Book</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td><span t-field="o.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td>author</td>
+                                    <td><span t-field="o.author"/></td>
+                                </tr>
+                                <tr>
+                                    <td>ISBN</td>
+                                    <td><span t-field="o.isbn"/></td>
+                                </tr>
+                                <tr>
+                                    <td>status</td>
+                                    <td><span t-field="o.state"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+<record id="action_report_custom_details" model="ir.actions.report">
+    <field name="name">Library Book Report</field>
+    <field name="model">lib.book</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">library_mgmt.report_custom_template</field>
+    <field name="report_file">library_mgmt.report_custom_template</field>
+    <field name="binding_model_id" ref="model_lib_book"/>
+    <field name="binding_type">report</field>
+</record>
+
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard form view -->
+    <record id="view_borrow_wizard_form" model="ir.ui.view">
+        <field name="name">borrow.wizard.form</field>
+        <field name="model">borrow.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Borrow Book">
+                <group>
+                    <field name="book_id" readonly="1"/>
+                    <field name="borrower_id"/>
+                    <field name="due_date"/>
+                </group>
+                <footer>
+                    <button name="confirm"
+                            string="Confirm Borrow"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

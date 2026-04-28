@@ -12,8 +12,12 @@
 
     # Views
     'data': [
+        'security/lib_group.xml',
         'security/ir.model.access.csv',
-        
+        'security/lib_group.xml',
+        'wizard/borrow_wizard.xml',
+        'views/book.xml',
+        'report/book_report.xml',
     ],
 
     # Author
